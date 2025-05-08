@@ -43,8 +43,22 @@ machineId.machineId().then(async (machineID) => {
     }
 
     // Middleware
-    app.use(cors());
-    app.options("*", cors());
+const allowedOrigins = ['https://astonishing-semifreddo-68fa5b.netlify.app'];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin like mobile apps or curl requests
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true // if you're sending cookies or auth headers
+}));
+
+app.options('*', cors());
+
     app.use(express.json());
     app.use(morgan("tiny"));
 
