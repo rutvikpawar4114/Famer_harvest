@@ -22,7 +22,7 @@ const rateRoutes = require("./routes/rate");
 const serviceRoutes = require("./routes/service");
 const croprequestRoutes = require("./routes/croprequest");
 
-const api = process.env.API_URL;
+const api = process.env.API_URL || '/api/v1'; // Fallback to '/api/v1' if not set
 
 // Get machine ID and start the app after license check
 machineId.machineId().then(async (machineID) => {
