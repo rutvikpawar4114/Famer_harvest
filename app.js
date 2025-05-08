@@ -35,7 +35,10 @@ machineId.machineId().then(async (machineID) => {
       storedLicense.licenseCode !== license ||
       storedLicense.deviceId !== machineID
     ) {
-      console.error("Invalid license.");
+     console.error("Invalid license.");
+     console.error("Actual Machine ID:", machineID);
+     console.error("Expected Device ID:", storedLicense.deviceId);
+
       process.exit(1);
     }
 
